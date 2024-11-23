@@ -1,5 +1,5 @@
 import { localize } from './localization.js';
-import { setWordToGuess, getWordToGuess, setBeginGameStatus, getDictionaryData, setDictionaryData, getInitialSpeedMovingEnemy, setGameStateVariable, getBeginGameStatus, getMaxAttemptsToDrawEnemies, getPlayerObject, getMenuState, getGameVisiblePaused, getGameVisibleActive, getNumberOfEnemySquares, getElements, getLanguage, getGameInProgress, gameState } from './constantsAndGlobalVars.js';
+import { setGuessCount, getGuessCount, getGuessedWord, setGuessedWord, setWordToGuess, getWordToGuess, setBeginGameStatus, getDictionaryData, setDictionaryData, getInitialSpeedMovingEnemy, setGameStateVariable, getBeginGameStatus, getMaxAttemptsToDrawEnemies, getPlayerObject, getMenuState, getGameVisiblePaused, getGameVisibleActive, getNumberOfEnemySquares, getElements, getLanguage, getGameInProgress, gameState } from './constantsAndGlobalVars.js';
 
 let playerObject = getPlayerObject();
 let movingEnemy = {};
@@ -83,10 +83,13 @@ function drawWordToGuessText(ctx, canvasWidth, canvasHeight) {
     ctx.textBaseline = "middle";
     ctx.fillStyle = "#FFF";
 
-    ctx.fillText(`Word To Guess: ${getWordToGuess()}`, canvasWidth / 2, canvasHeight / 2);
+    ctx.fillText(`Word To Guess: ${getWordToGuess()}`, canvasWidth / 2, 40);
+    ctx.fillText(`Current Guess: ${getGuessedWord()}`, canvasWidth / 2, 80);
+    ctx.fillText(`Number of Guesses: ${getGuessCount()}`, canvasWidth / 2, 120); 
 }
 
-function getRandomWord() {
+
+export function getRandomWord() {
     const dictionaryData = getDictionaryData();
     const keys = Object.keys(dictionaryData);
     const numberOfPairs = keys.length;

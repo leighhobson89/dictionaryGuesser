@@ -1,5 +1,5 @@
-import { DICTIONARY_URL, gameState, getLanguage, setElements, getElements, setBeginGameStatus, getGameInProgress, setGameInProgress, getGameVisiblePaused, getBeginGameStatus, getGameVisibleActive, getMenuState, getLanguageSelected, setLanguageSelected, setLanguage } from './constantsAndGlobalVars.js';
-import { loadDictionaryData, setGameState, startGame, gameLoop } from './game.js';
+import { setWordToGuess, DICTIONARY_URL, getLanguage, setElements, getElements, setBeginGameStatus, getGameInProgress, setGameInProgress, getGameVisiblePaused, getBeginGameStatus, getGameVisibleActive, getMenuState, getLanguageSelected, setLanguageSelected, setLanguage } from './constantsAndGlobalVars.js';
+import { getRandomWord, loadDictionaryData, setGameState, startGame, gameLoop } from './game.js';
 import { initLocalization, localize } from './localization.js';
 import { loadGameOption, loadGame, saveGame, copySaveStringToClipBoard } from './saveLoadGame.js';
 
@@ -19,6 +19,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     getElements().returnToMenuButton.addEventListener('click', () => {
         setGameState(getMenuState());
+    });
+
+    getElements().newWord.addEventListener('click', () => {
+        const randomWord = getRandomWord();
+        console.log("New word:", randomWord);
+        setWordToGuess(randomWord);
     });
 
     setGameState(getMenuState());

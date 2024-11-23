@@ -34,6 +34,8 @@ export const playerObject = {
 //GLOBAL VARIABLES
 let dictionary = {};
 let wordToGuess = null;
+let guessCount = 0;
+let guessedWord = null;
 
 //FLAGS
 let audioMuted;
@@ -220,5 +222,21 @@ export function getWordToGuess() {
 
 export function setWordToGuess(value) {
     wordToGuess = value;
+}
+
+export function getGuessedWord() {
+    return guessedWord;
+}
+
+export function setGuessedWord(value) {
+    guessedWord = value;
+}
+
+export function getGuessCount() {
+    return guessCount;
+}
+
+export function setGuessCount(value) {
+    guessCount = value;
 }
 
