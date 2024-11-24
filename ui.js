@@ -1,4 +1,4 @@
-import { setWordToGuess, DICTIONARY_URL, getLanguage, setElements, getElements, setBeginGameStatus, getGameInProgress, setGameInProgress, getGameVisiblePaused, getBeginGameStatus, getGameVisibleActive, getMenuState, getLanguageSelected, setLanguageSelected, setLanguage } from './constantsAndGlobalVars.js';
+import { setGuessingInProcess, setWordToGuess, DICTIONARY_URL, getLanguage, setElements, getElements, setBeginGameStatus, getGameInProgress, setGameInProgress, getGameVisiblePaused, getBeginGameStatus, getGameVisibleActive, getMenuState, getLanguageSelected, setLanguageSelected, setLanguage } from './constantsAndGlobalVars.js';
 import { getRandomWord, loadDictionaryData, setGameState, startGame, gameLoop } from './game.js';
 import { initLocalization, localize } from './localization.js';
 import { loadGameOption, loadGame, saveGame, copySaveStringToClipBoard } from './saveLoadGame.js';
@@ -27,12 +27,15 @@ document.addEventListener('DOMContentLoaded', async () => {
         setWordToGuess(randomWord);
     });
 
+    getElements().guessWord.addEventListener('click', () => {
+        setGuessingInProcess(true);
+    });
+
     setGameState(getMenuState());
     handleLanguageChange(getLanguageSelected());
 });
 
 async function setElementsLanguageText() {
-    // Localization text
     getElements().menuTitle.innerHTML = `<h2>${localize('menuTitle', getLanguage())}</h2>`;
     getElements().newGameMenuButton.innerHTML = `${localize('newGame', getLanguage())}`;
 }

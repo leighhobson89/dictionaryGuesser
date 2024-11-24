@@ -33,15 +33,18 @@ export const playerObject = {
 
 //GLOBAL VARIABLES
 let dictionary = {};
-let wordToGuess = null;
+let wordToGuess = '';
 let guessCount = 0;
-let guessedWord = null;
+let guessedWord = '';
+let guessArray = [];
 
 //FLAGS
 let audioMuted;
 let languageChangedFlag;
 let beginGameState = true;
 let gameInProgress = false;
+
+let guessingInProcess = false;
 
 let autoSaveOn = false;
 export let pauseAutoSaveCountdown = true;
@@ -240,3 +243,18 @@ export function setGuessCount(value) {
     guessCount = value;
 }
 
+export function setGuessStringArray(wordBeingGuessed) {
+    guessArray.push(wordBeingGuessed);
+}
+
+export function getGuessStringArray() {
+    return guessArray;
+}
+
+export function getGuessingInProcess() {
+    return guessingInProcess;
+}
+
+export function setGuessingInProcess(value) {
+    guessingInProcess = value;
+}
