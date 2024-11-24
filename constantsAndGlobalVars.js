@@ -22,21 +22,21 @@ export const MAX_ATTEMPTS_TO_DRAW_ENEMIES = 1000;
 
 export const DICTIONARY_URL = './resources/WebstersEnglishDictionary-master/dictionary.json';
 
-export const playerObject = {
-    x: 100,
-    y: 100,
-    width: 50,
-    height: 50,
-    dx: getInitialSpeedPlayer(),
-    dy: getInitialSpeedPlayer()
-};
-
 //GLOBAL VARIABLES
 let dictionary = {};
 let wordToGuess = '';
 let guessCount = 0;
 let guessedWord = '';
 let guessArray = [];
+let aiKnowledge = {
+    correctLetters: [],    // Array to store correctly placed letters (initialized as an empty array)
+    possibleLetters: [],   // Array to store letters that are in the word but not in the correct positions (initialized as an empty array)
+    incorrectLetters: [],   // Array to store letters that are not in the word (initialized as an empty array)
+    lengthMatched: false,   // Boolean to track whether the correct word length has been matched (initialized as false)
+    lastLengthDifference: null, // Tracks the difference between the length of the last guess and the target word (initialized as null)
+    guesses: []             // Array to store previous guesses and their feedback (initialized as an empty array)
+};
+
 
 //FLAGS
 let audioMuted;
@@ -257,4 +257,12 @@ export function getGuessingInProcess() {
 
 export function setGuessingInProcess(value) {
     guessingInProcess = value;
+}
+
+export function getAIKnowledge() {
+    return aiKnowledge;
+}
+
+export function setAIKnowledge(value) {
+    aiKnowledge = value;
 }
